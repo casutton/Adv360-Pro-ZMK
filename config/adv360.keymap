@@ -4,6 +4,38 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/backlight.h>
 
+/* Custom Device-tree */
+&sk {
+  quick-release;
+};
+
+/* Custom Defined Behaviors */
+/ {
+
+    behaviors {
+
+       /* For the mod keys on the shift, allow them to do one
+        * modifier on hold, but a different modifier (sticky) on tap. */    
+        sht: sticky_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <400>;
+            quick-tap-ms = <200>;
+            bindings = <&kp>, <&sk>;
+        };
+
+        /* For shift keys, a tap dance lets them be shift or caps word. */  
+        tdsh: tap_dance_shift {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LSFT>, <&caps_word>;
+        };
+    };
+
+};
+
 / {
     behaviors {
       #include "macros.dtsi"
