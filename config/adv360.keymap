@@ -11,6 +11,7 @@
 
 &lt {
   quick-tap-ms = <200>;
+  tapping-term-ms = <175>;
 };
 
 /* Custom Defined Behaviors */
@@ -24,7 +25,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <400>;
+            tapping-term-ms = <175>;
             quick-tap-ms = <200>;
             bindings = <&kp>, <&sk>;
         };
@@ -43,6 +44,19 @@
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&tog 1>, <&tog 2>;
+        };
+
+        /* Command keys for Rectangle.app */
+        tdwinlft: tap_dance_window_left {
+          compatible = "zmk,behavior-tap-dance";
+          #binding-cells = <0>;
+          bindings = <&kp LA(LC(LEFT))>, <&kp LA(LG(LS(LEFT)))>, <&kp LC(LA(E))>;
+        };
+
+        tdwinrt: tap_dance_window_right {
+          compatible = "zmk,behavior-tap-dance";
+          #binding-cells = <0>;
+          bindings = <&kp LA(LC(RIGHT))>, <&kp LA(LG(LS(RIGHT)))>, <&kp LC(LA(T))>;
         };
     };
 
